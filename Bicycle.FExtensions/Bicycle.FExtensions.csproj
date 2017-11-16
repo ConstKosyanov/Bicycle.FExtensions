@@ -1,17 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <TargetFramework>NET461</TargetFramework>
-    <Description />
+    <TargetFramework>net461</TargetFramework>
+    <Description>This is a small package for easier work in functional style</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.0.0.2</AssemblyVersion>
     <FileVersion>1.0.0.2</FileVersion>
     <Version>1.0.0.2</Version>
+    <PackageProjectUrl>https://github.com/ConstKosyanov/Bicycle.FExtensions</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>Added overloaded method "Do", which can return different types</PackageReleaseNotes>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>C:\Users\k.kosyanov\Documents\NuGet\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
   </PropertyGroup>
-
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NuGet.CommandLine" Version="4.3.0" />
+  </ItemGroup>
 </Project>
