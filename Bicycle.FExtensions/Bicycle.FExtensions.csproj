@@ -4,13 +4,14 @@
     <TargetFramework>net461</TargetFramework>
     <Description>This is a small package for easier work in functional style</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.0.0.3</AssemblyVersion>
-    <FileVersion>1.0.0.3</FileVersion>
-    <Version>1.0.0.3</Version>
+    <AssemblyVersion>1.0.0.4</AssemblyVersion>
+    <FileVersion>1.0.0.4</FileVersion>
+    <Version>1.0.0.4</Version>
     <PackageProjectUrl>https://github.com/ConstKosyanov/Bicycle.FExtensions</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>Method Do renamed to Make
-Added overloaded method "Do", which can return different types</PackageReleaseNotes>
+    <PackageReleaseNotes>Added overloaded method "Do" that takes function as parameter but returns the same original object after function call, not the funcion result.
+Method Do renamed to Make.
+Added overloaded method "Do", which can return different types.</PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
