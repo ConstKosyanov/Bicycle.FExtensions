@@ -11,7 +11,7 @@ namespace Bicycle.FExtensions
             action(local);
             return local;
         }
-        public static TOut Do<TIn, TOut>(this TIn local, Func<TIn, TOut> func) => func(local);
+        public static TOut Make<TIn, TOut>(this TIn local, Func<TIn, TOut> func) => func(local);
         public static T To<T>(this object local) => (T)local;
         public static T As<T>(this object local) where T : class => local as T;
     }
