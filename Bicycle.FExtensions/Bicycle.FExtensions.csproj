@@ -1,15 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFrameworks>netcoreapp2.0;net461</TargetFrameworks>
     <Description>This is a small package for easier work in functional style</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.0.0.4</AssemblyVersion>
-    <FileVersion>1.0.0.4</FileVersion>
-    <Version>1.0.0.4</Version>
+    <AssemblyVersion>1.0.0.8</AssemblyVersion>
+    <FileVersion>1.0.0.8</FileVersion>
+    <Version>1.0.0.8</Version>
     <PackageProjectUrl>https://github.com/ConstKosyanov/Bicycle.FExtensions</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>Added overloaded method "Do" that takes function as parameter but returns the same original object after function call, not the funcion result.
+    <PackageReleaseNotes>Added SimpleJoin method which allows to filter collection by collection of keys.
+Added (Single/Where)With(Min/Max) method
+Added XML annotation for methods;
+Added TryGetSingle method;
+Added overloaded method "Do" that takes function as parameter but returns the same original object after function call, not the funcion result.
 Method Do renamed to Make.
 Added overloaded method "Do", which can return different types.</PackageReleaseNotes>
   </PropertyGroup>
@@ -19,7 +22,4 @@ Added overloaded method "Do", which can return different types.</PackageReleaseN
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>bin\Debug\</OutputPath>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="NuGet.CommandLine" Version="4.3.0" />
-  </ItemGroup>
 </Project>
