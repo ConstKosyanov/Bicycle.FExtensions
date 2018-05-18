@@ -72,5 +72,7 @@ namespace Bicycle.FExtensions
             .Make(x => local.Single(y => selector(y).Equals(x)));
 
         public static IEnumerable<T> SimpleJoin<T, TKey>(this IEnumerable<T> local, IEnumerable<TKey> keys, Func<T, TKey> keySelector) => local.Join(keys, keySelector, x => x, (x, y) => x);
+
+        public static string Left(this string local, int length) => local?.Substring(0, length > local.Length ? length : local.Length);
     }
 }
