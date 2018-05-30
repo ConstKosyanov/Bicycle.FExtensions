@@ -1,14 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.0;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <Description>This is a small package for easier work in functional style</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.0.0.9</AssemblyVersion>
-    <FileVersion>1.0.0.9</FileVersion>
-    <Version>1.0.0.9</Version>
+    <AssemblyVersion>1.0.0.14</AssemblyVersion>
+    <FileVersion>1.0.0.14</FileVersion>
+    <Version>1.0.0.14</Version>
     <PackageProjectUrl>https://github.com/ConstKosyanov/Bicycle.FExtensions</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>Added string extension method "Left" that allows safety get subsrting from 0 char to length.
+    <PackageReleaseNotes>Fixed Left method for string with 0 length
+Added If method with few overloads and also IfNotNull also
+Target frameworks(Core2 &amp; NetF) changed to Standard2
+Added string extension method "Left" that allows safety get subsrting from 0 char to length.
 Added SimpleJoin method which allows to filter collection by collection of keys.
 Added (Single/Where)With(Min/Max) method
 Added XML annotation for methods;
@@ -23,4 +26,7 @@ Added overloaded method "Do", which can return different types.</PackageReleaseN
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>bin\Debug\</OutputPath>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Runtime" Version="4.3.0" />
+  </ItemGroup>
 </Project>

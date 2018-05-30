@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Bicycle.FExtensions
 {
@@ -73,6 +74,28 @@ namespace Bicycle.FExtensions
 
         public static IEnumerable<T> SimpleJoin<T, TKey>(this IEnumerable<T> local, IEnumerable<TKey> keys, Func<T, TKey> keySelector) => local.Join(keys, keySelector, x => x, (x, y) => x);
 
-        public static string Left(this string local, int length) => local?.Substring(0, length > local.Length ? length : local.Length);
+        public static string Left(this string local, int length) => !string.IsNullOrEmpty(local)
+            ? local.Substring(0, length > local.Length ? length : local.Length)
+            : string.Empty;
+
+        public static TResult If<TSource, TResult>(this TSource local, Func<TSource, bool> Condition, Func<TSource, TResult> thanGet, Func<TSource, TResult> elseGet) => Condition(local)
+            ? thanGet(local)
+            : elseGet(local);
+
+        public static TResult If<TSource, TResult>(this TSource local, Func<TSource, bool> Condition, TResult thanValue, Func<TSource, TResult> elseGet) => Condition(local)
+            ? thanValue
+            : elseGet(local);
+
+        public static TResult If<TSource, TResult>(this TSource local, Func<TSource, bool> Condition, Func<TSource, TResult> thanGet, TResult elseValue) => Condition(local)
+            ? thanGet(local)
+            : elseValue;
+
+        public static TResult If<TSource, TResult>(this TSource local, Func<TSource, bool> Condition, TResult thanValue, TResult elseValue) => Condition(local)
+            ? thanValue
+            : elseValue;
+
+        public static TResult IfNotNull<TSource, TResult>(this TSource local, Func<TSource, TResult> thanGet, TResult elseValue) => local != null
+            ? thanGet(local)
+            : elseValue;
     }
 }
