@@ -74,23 +74,23 @@ namespace Bicycle.FExtensions
 
         public static IEnumerable<T> SimpleJoin<T, TKey>(this IEnumerable<T> local, IEnumerable<TKey> keys, Func<T, TKey> keySelector) => local.Join(keys, keySelector, x => x, (x, y) => x);
 
-        public static string Left(this string local, int length) => !string.IsNullOrEmpty(local)
-            ? local.Substring(0, length > local.Length ? length : local.Length)
-            : string.Empty;
+        public static string Left(this string local, int length) => length < local?.Length 
+            ? local.Substring(0, length) 
+            : local;
 
-        public static TResult If<TSource, TResult>(this TSource local, Func<TSource, bool> Condition, Func<TSource, TResult> thanGet, Func<TSource, TResult> elseGet) => Condition(local)
+        public static TResult If<TSource, TResult>(this TSource local, Func<TSource, bool> condition, Func<TSource, TResult> thanGet, Func<TSource, TResult> elseGet) => condition(local)
             ? thanGet(local)
             : elseGet(local);
 
-        public static TResult If<TSource, TResult>(this TSource local, Func<TSource, bool> Condition, TResult thanValue, Func<TSource, TResult> elseGet) => Condition(local)
+        public static TResult If<TSource, TResult>(this TSource local, Func<TSource, bool> condition, TResult thanValue, Func<TSource, TResult> elseGet) => condition(local)
             ? thanValue
             : elseGet(local);
 
-        public static TResult If<TSource, TResult>(this TSource local, Func<TSource, bool> Condition, Func<TSource, TResult> thanGet, TResult elseValue) => Condition(local)
+        public static TResult If<TSource, TResult>(this TSource local, Func<TSource, bool> condition, Func<TSource, TResult> thanGet, TResult elseValue) => condition(local)
             ? thanGet(local)
             : elseValue;
 
-        public static TResult If<TSource, TResult>(this TSource local, Func<TSource, bool> Condition, TResult thanValue, TResult elseValue) => Condition(local)
+        public static TResult If<TSource, TResult>(this TSource local, Func<TSource, bool> condition, TResult thanValue, TResult elseValue) => condition(local)
             ? thanValue
             : elseValue;
 
