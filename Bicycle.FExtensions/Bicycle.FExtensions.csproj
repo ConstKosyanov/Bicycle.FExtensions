@@ -3,12 +3,16 @@
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <Description>This is a small package for easier work in functional style</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.0.0.16</AssemblyVersion>
-    <FileVersion>1.0.0.16</FileVersion>
-    <Version>1.0.0.16-beta</Version>
+    <AssemblyVersion>1.0.0.20</AssemblyVersion>
+    <FileVersion>1.0.0.20</FileVersion>
+    <Version>1.0.0.20</Version>
     <PackageProjectUrl>https://github.com/ConstKosyanov/Bicycle.FExtensions</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>Fixed Left method for string with 0 length
+    <PackageReleaseNotes>Added new method SetIfEmty&lt;&gt; witch returns another collection if the source is empty;
+Added override of DoIf  with Action&lt;&gt; argument instead Func&lt;&gt;
+Added IfNotNull method, wich executes function only if this object is not null, else returns default value
+Added DoIf method, which executes action if condition is true, esle returns original object
+Fixed Left method for string with 0 length
 Added If method with few overloads and also IfNotNull also
 Target frameworks(Core2 &amp; NetF) changed to Standard2
 Added string extension method "Left" that allows safety get subsrting from 0 char to length.
@@ -25,5 +29,11 @@ Added overloaded method "Do", which can return different types.</PackageReleaseN
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 </Project>

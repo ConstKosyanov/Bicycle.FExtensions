@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace Bicycle.FExtensions
 {
@@ -74,8 +73,8 @@ namespace Bicycle.FExtensions
 
         public static IEnumerable<T> SimpleJoin<T, TKey>(this IEnumerable<T> local, IEnumerable<TKey> keys, Func<T, TKey> keySelector) => local.Join(keys, keySelector, x => x, (x, y) => x);
 
-        public static string Left(this string local, int length) => length < local?.Length 
-            ? local.Substring(0, length) 
+        public static string Left(this string local, int length) => length < local?.Length
+            ? local.Substring(0, length)
             : local;
 
         public static TResult If<TSource, TResult>(this TSource local, Func<TSource, bool> condition, Func<TSource, TResult> thanGet, Func<TSource, TResult> elseGet) => condition(local)
@@ -94,8 +93,29 @@ namespace Bicycle.FExtensions
             ? thanValue
             : elseValue;
 
+        ///<summary>Executes function and returns its result if object is not null, esle returns elseValue</summary>
         public static TResult IfNotNull<TSource, TResult>(this TSource local, Func<TSource, TResult> thanGet, TResult elseValue) => local != null
             ? thanGet(local)
             : elseValue;
+
+        ///<summary>Executes function and returns its result if object is not null, esle returns default value</summary>
+        public static TResult IfNotNull<TSource, TResult>(this TSource local, Func<TSource, TResult> thanGet) => local.IfNotNull(thanGet, default);
+
+        ///<summary>Executes function and returns its result if condition is true, esle returns original object</summary>
+        public static TSource DoIf<TSource>(this TSource local, Func<TSource, bool> condition, Func<TSource, TSource> action) => condition(local)
+            ? action(local)
+            : local;
+
+        ///<summary>Executes function and if condition is true and returns original object</summary>
+        public static TSource DoIf<TSource>(this TSource local, Func<TSource, bool> condigion, Action<TSource> action)
+        {
+            if(condigion(local))
+                action(local);
+            return local;
+        }
+
+        public static IEnumerable<T> SetIfEmpty<T>(this IEnumerable<T> local, IEnumerable<T> newValue) => local.Any() 
+            ? local 
+            : newValue;
     }
 }
