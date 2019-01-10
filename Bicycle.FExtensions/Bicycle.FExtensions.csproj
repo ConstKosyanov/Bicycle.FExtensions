@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <Description>This is a small package for easier work in functional style</Description>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.0.0.20</AssemblyVersion>
-    <FileVersion>1.0.0.20</FileVersion>
-    <Version>1.0.0.20</Version>
-    <PackageProjectUrl>https://github.com/ConstKosyanov/Bicycle.FExtensions</PackageProjectUrl>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>Added new method SetIfEmty&lt;&gt; witch returns another collection if the source is empty;
+    <Description>This is a small package for easier work in functional style
+
+History:
+1.0.0.24 - Added Distinct(selector) method, wich is just shortcut for ".Select(selector).Distinct()"
+1.0.0.23 - Method "SimpleJoin" became Obsolete, use "Filter" insteadd
+1.0.0.22 - Added GetOrDefault method for IReadOnlyDictionary
+Renamed SetIfEmpty -&gt; DefaultIfEmty
+Added new method SetIfEmty&lt;&gt; witch returns another collection if the source is empty;
 Added override of DoIf  with Action&lt;&gt; argument instead Func&lt;&gt;
 Added IfNotNull method, wich executes function only if this object is not null, else returns default value
 Added DoIf method, which executes action if condition is true, esle returns original object
@@ -22,7 +22,12 @@ Added XML annotation for methods;
 Added TryGetSingle method;
 Added overloaded method "Do" that takes function as parameter but returns the same original object after function call, not the funcion result.
 Method Do renamed to Make.
-Added overloaded method "Do", which can return different types.</PackageReleaseNotes>
+Added overloaded method "Do", which can return different types.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0.24</Version>
+    <PackageProjectUrl>https://github.com/ConstKosyanov/Bicycle.FExtensions</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>Method "SimpleJoin" became Obsolete, use "Filter" insteadd</PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>

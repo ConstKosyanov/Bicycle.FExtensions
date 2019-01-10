@@ -71,7 +71,11 @@ namespace Bicycle.FExtensions
         public static T SingleWithMax<T, TResult>(this IEnumerable<T> local, Func<T, TResult> selector) => local.Max(selector)
             .Make(x => local.Single(y => selector(y).Equals(x)));
 
-        public static IEnumerable<T> SimpleJoin<T, TKey>(this IEnumerable<T> local, IEnumerable<TKey> keys, Func<T, TKey> keySelector) => local.Join(keys, keySelector, x => x, (x, y) => x);
+        [Obsolete("Use " + nameof(Filter) + " instead")]
+        public static IEnumerable<T> SimpleJoin<T, TKey>(this IEnumerable<T> local, IEnumerable<TKey> keys, Func<T, TKey> keySelector) => local.Filter(keys, keySelector);
+
+        /// <summary>Allows to filter the collection by another collection of values and key extractor</summary>
+        public static IEnumerable<T> Filter<T, TKey>(this IEnumerable<T> local, IEnumerable<TKey> keys, Func<T, TKey> keySelector) => local.Join(keys, keySelector, x => x, (x, y) => x);
 
         public static string Left(this string local, int length) => length < local?.Length
             ? local.Substring(0, length)
@@ -114,8 +118,21 @@ namespace Bicycle.FExtensions
             return local;
         }
 
-        public static IEnumerable<T> SetIfEmpty<T>(this IEnumerable<T> local, IEnumerable<T> newValue) => local.Any() 
-            ? local 
-            : newValue;
+        [Obsolete("This method will be removed in next vesions, please use DefaultIfEmpty")]
+        public static IEnumerable<T> SetIfEmpty<T>(this IEnumerable<T> local, IEnumerable<T> defaultCollection) => DefaultIfEmpty(local, defaultCollection);
+
+        public static IEnumerable<T> DefaultIfEmpty<T>(this IEnumerable<T> local, IEnumerable<T> defaultCollection) => local.Any()
+            ? local
+            : defaultCollection;
+
+        /// <summary>Returns value of key from dictionary, if key dosn't exist return defaultValue</summary>
+        public static TValue GetOrDefault<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> local, TKey key, TValue defaultValue) => local.TryGetValue(key, out var result)
+            ? result
+            : defaultValue;
+
+        /// <summary>Selects Tout from Tin using <paramref name="func"/>, and returns collection of distinct Tout. Equivalent of "some.Select(selector).Distinct()"</summary>
+        public static IEnumerable<TOut> Distinct<Tin, TOut>(this IEnumerable<Tin> local, Func<Tin, TOut> func) => local
+            ?.Select(func)
+            .Distinct();
     }
 }
